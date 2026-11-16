@@ -1,0 +1,26 @@
+{
+  "siteId": "hubbard",
+  "studyBounds": [-140.0, 59.87, -139.25, 60.23],
+  "frequency": "A",
+  "channel": "HHHH",
+  "referenceManifest": "hubbard-reference.json",
+  "collection": "NISAR_L2_GCOV_BETA_V1",
+  "collectionDoi": "10.5067/NIL2GCOV-B1",
+  "maturity": "beta",
+  "track": 63,
+  "frame": 32,
+  "direction": "ascending",
+  "lookDirection": "left",
+  "before": {
+    "date": "2025-11-26",
+    "granuleId": "NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001",
+    "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001/NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001.h5",
+    "earthdataUrl": "https://search.earthdata.nasa.gov/search/granules?p=C3622214170-ASF&q=NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001"
+  },
+  "after": {
+    "date": "2025-12-08",
+    "granuleId": "NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001",
+    "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001/NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001.h5",
+    "earthdataUrl": "https://search.earthdata.nasa.gov/search/granules?p=C3622214170-ASF&q=NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001"
+  }
+}

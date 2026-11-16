@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Compare Landsat scenes of Columbia Glacier and discover NISAR radar acquisitions from NASA Earthdata.">
+<meta name="theme-color" content="#101011">
+<title>CryoTrace — Glacier Change Observatory</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{color-scheme:dark;--bg:#07111c;--surface:#0c1928;--surface2:#101f30;--line:#24384c;--text:#edf6fc;--muted:#a6bacd;--ice:#92eff8;--mono:"IBM Plex Mono",monospace;--display:"Space Grotesk",sans-serif;font:16px "DM Sans",system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);background:radial-gradient(ellipse at 82% 54%,#0e263e80,transparent 39%),var(--bg)}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{color:inherit;cursor:pointer}button:disabled{cursor:default;opacity:.42}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--ice);outline-offset:4px}img{display:block;max-width:100%}[hidden]{display:none!important}p{line-height:1.6;color:var(--muted)}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:var(--display);font-weight:700}.shell{width:min(1320px,calc(100% - 112px));margin-inline:auto}.skip{position:fixed;left:16px;top:12px;padding:12px;background:var(--ice);color:var(--bg);z-index:10;transform:translateY(-150%)}.skip:focus{transform:none}.top{background:#07111cf5;border-bottom:1px solid #42627442;position:sticky;top:0;z-index:5}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font:700 24px var(--display);letter-spacing:-.05em;display:inline-flex;align-items:center;gap:0;white-space:nowrap}.brand>span:last-child{color:var(--ice)}.mark{display:grid;place-items:center;font:500 23px sans-serif;width:35px;height:35px;border:1px solid #5eabbe68;border-radius:9px;color:var(--ice);margin-right:10px;background:#193f53}.nav nav{display:flex;gap:33px;color:#a9bdd0;font-size:14px;font-weight:600}.nav a:hover,.foot a:hover{color:var(--ice)}.nav-action{border:1px solid #50738999;border-radius:8px;padding:10px 13px;font-size:13px;font-weight:700;white-space:nowrap}.nav-action span{color:var(--ice);padding-left:7px}
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#07121f}.hero-inner{min-height:clamp(500px,65vh,665px);display:flex;align-items:center;position:relative}.hero-visual,.hero-photo,.hero-grid{position:absolute;inset:0;pointer-events:none}.hero-visual{z-index:-1;left:25%;overflow:hidden;background:radial-gradient(ellipse at 65% 33%,#27566e,#0c1e30 58%,#07121c)}.hero-photo{background:center 43%/cover no-repeat var(--hero-image);filter:saturate(.72) hue-rotate(8deg) contrast(1.14);opacity:.87;animation:flyover 27s ease-in-out infinite alternate}.hero-visual:after{content:"";position:absolute;inset:-1px;background:linear-gradient(90deg,#07121f 0%,#07121fe8 13%,#07121f37 50%,#07121f00 72%),linear-gradient(0deg,#07121ff4,#07121f00 35%,#07121f25 83%,#07121f55);z-index:2}.hero-grid{background-image:linear-gradient(#b1ecff15 1px,transparent 1px),linear-gradient(90deg,#b1ecff15 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(90deg,transparent 8%,#000 56%)}.scan{position:absolute;inset:0 0 auto 10%;height:18%;top:-21%;background:linear-gradient(transparent,#74e7ff1d);border-bottom:1px solid #83faff65;animation:sweep 10s linear infinite}.target{position:absolute;z-index:3;top:39%;left:68%;width:104px;height:104px;border:1px solid #8fe8f875;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 30px #68e8ff33}.target i,.target b{width:7px;height:7px;border-radius:50%;background:#bbfaff;box-shadow:0 0 14px #8be9ff;grid-area:1/1}.target b{animation:pulse 3.7s ease-out infinite;background:none;border:1px solid #8ff4ff}.hero-copy{position:relative;z-index:1;max-width:640px;padding:54px 0;animation:enter .85s cubic-bezier(.2,.7,.3,1) both}.eyebrow,.mono,.swath,.data-tag,.hero-caption small,.scene-label small,.scene-credit{font-family:var(--mono);letter-spacing:.10em;font-size:11px;font-weight:500}.eyebrow{display:flex;gap:10px;align-items:center;color:var(--ice)}.beacon,.data-tag i,.swath i{display:inline-block;width:7px;height:7px;background:var(--ice);border-radius:50%;box-shadow:0 0 12px #8ce9fa95}.beacon{animation:blink 2.8s ease-in-out infinite}.hero h1{font-size:clamp(68px,8.5vw,140px);line-height:.89;letter-spacing:-.092em;margin:25px 0 26px;text-wrap:balance}.hero h1 em{display:inline-block;font-style:normal;background:linear-gradient(98deg,#aff5ff 3%,#56bce5 57%,#b1b3ff);background-clip:text;color:transparent;padding-right:.10em;padding-bottom:.12em;margin-bottom:-.12em}.hero p{max-width:460px;font-size:17px;color:#c0d1de}.actions,.lab-actions{display:flex;gap:11px;flex-wrap:wrap;align-items:center}.actions{margin-top:31px}.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:14px;border:1px solid transparent;border-radius:8px;padding:12px 16px;min-height:45px;font-weight:700;font-size:13px;line-height:1.25;transition:background .2s,border-color .2s,box-shadow .2s,transform .2s}.primary{background:#9bf1f9;color:#071a25;border-color:#9bf1f9}.primary:hover{background:#c7f9ff;box-shadow:0 0 24px #7eeaff45;transform:translateY(-2px)}.secondary{color:#e3f1fc;background:#0e2032bf;border-color:#3d586e}.secondary:hover{background:#1d354b;border-color:#73b8c9;transform:translateY(-2px)}.primary span,.secondary span{font-size:16px}.hero-caption{position:absolute;right:0;bottom:43px;display:flex;align-items:center;gap:12px;padding:12px 16px;background:#0a1725bf;backdrop-filter:blur(12px);border:1px solid #a1e5f151;border-radius:9px}.reticle{color:var(--ice);font-size:26px}.hero-caption strong,.hero-caption small{display:block}.hero-caption strong{font:700 16px var(--display)}.hero-caption small{color:#bbe6fa;font-size:9px;margin-top:4px}.hero-footer{background:#0d1d2b;border-block:1px solid #2a4053}.swath{min-height:46px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#a2b7cb}.swath i{margin-right:7px;width:5px;height:5px}.swath b{color:#e7f5ff;font-weight:500}
+.section{padding-top:72px;scroll-margin-top:73px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:23px}.dash{display:inline-block;width:18px;height:1px;background:var(--ice);box-shadow:0 0 7px var(--ice)}.section-head h2{font-size:clamp(35px,4.5vw,62px);letter-spacing:-.063em;line-height:1.06;margin:9px 0 7px}.data-tag{border:1px solid #2d5866;background:#122f3e;color:#b6f3f6;padding:7px 10px;border-radius:5px;display:inline-flex;align-items:center;white-space:nowrap;gap:8px;font-size:10px;letter-spacing:.045em}.data-tag i{width:5px;height:5px}.workspace{display:grid;grid-template-columns:minmax(0,3.35fr) minmax(218px,1fr);gap:15px;align-items:start}.panel{background:linear-gradient(140deg,#102033,#0b1725 85%);border:1px solid var(--line);border-radius:14px;min-width:0}.scene-panel{overflow:hidden}.toolbar,.timeline-head,.lab-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.toolbar{padding:10px 13px}.modes,.zoom{display:flex;align-items:center;gap:4px}.modes button,.zoom button,.icon{border:1px solid transparent;border-radius:6px;background:none;color:var(--muted);padding:7px 9px;font-weight:700;font-size:13px}.modes button[aria-pressed=true],.zoom button:hover,.icon:hover,.modes button:hover{background:#193348;color:#c8f9ff;border-color:#2d5268}.zoom button{font-size:17px;padding:4px 8px}
+.scene{position:relative;isolation:isolate;aspect-ratio:720 / 480;max-height:550px;overflow:hidden;border-block:1px solid var(--line);background:#091726;--split:50%;--zoom:1}.layer,.scene-grid{position:absolute;inset:0;pointer-events:none}.layer img{width:100%;height:100%;object-fit:contain;transform:scale(var(--zoom));transition:transform .3s,opacity .25s}.layer img.loading{opacity:.48}.earlier{clip-path:inset(0 calc(100% - var(--split)) 0 0);background:#091726}.scene-grid{opacity:.38;background-size:60px 60px;background-image:linear-gradient(#c7f8ff20 1px,transparent 1px),linear-gradient(90deg,#c7f8ff20 1px,transparent 1px);mask-image:linear-gradient(#000,transparent 18%,transparent 78%,#000)}.scene[data-mode=before] .earlier{clip-path:none}.scene[data-mode=after] .earlier,.scene[data-mode=after] .left,.scene[data-mode=before] .right,.scene:not([data-mode=compare]) :is(.divider,#wipe){display:none}.scene-label,.scene-credit{position:absolute;background:#081322ed;border:1px solid #94dbee51;border-radius:6px;pointer-events:none}.scene-label{top:13px;padding:7px 10px;display:grid;gap:1px}.scene-label.left{left:13px}.scene-label.right{right:13px}.scene-label small{font-size:9px;color:#b2d4e5}.scene-label strong{font:700 20px var(--display);line-height:1}.scene-credit{bottom:10px;right:10px;padding:5px 7px;font-size:9px;color:#d1e8f5}.divider{position:absolute;top:0;bottom:0;left:var(--split);border-left:2px solid #aaffff;box-shadow:0 0 17px #95f6ff;pointer-events:none;display:grid;align-items:center}.divider span{transform:translateX(-50%);border-radius:50%;display:grid;place-items:center;background:#a1f5fb;color:#071927;width:40px;height:40px;font-size:17px;box-shadow:0 0 24px #9af7fd74}.scene:focus-within .divider span{outline:2px solid white;outline-offset:4px}#wipe{opacity:0;position:absolute;inset:0;margin:0;width:100%;height:100%;cursor:ew-resize;touch-action:pan-y}.image-error{position:absolute;inset:auto 12px 12px;pointer-events:none;background:#182a3b;border:1px solid #a2becf;border-radius:6px;padding:10px;text-align:center;font-size:13px}
+.timeline{padding:14px 17px 17px}.timeline-head{justify-content:flex-start}.play{width:36px;height:36px;border-radius:50%;border:1px solid #5b9daf;background:#14374a;color:#a2f1fc;font-size:12px;display:grid;place-items:center}.play:hover,.play[aria-pressed=true]{background:var(--ice);color:var(--bg)}.timeline strong,.timeline small{display:block}.timeline small{color:var(--muted);margin-top:1px}.timeline-head>span{margin-left:auto;color:#a6dfea;font:500 11px var(--mono)}.stops{display:flex;justify-content:space-between;gap:4px;margin-top:13px;position:relative}.stops:before{content:"";position:absolute;left:7%;right:7%;top:10px;border-top:1px solid #345972}.stops button{border:0;background:none;position:relative;flex:1;font:500 11px var(--mono);color:var(--muted);padding:5px 0 2px}.stops button:before{content:"";display:block;margin:0 auto 7px;width:9px;height:9px;border:1px solid #698fa3;border-radius:50%;background:#111f2e}.stops button:is(:hover,[aria-pressed=true]){color:var(--ice)}.stops button[aria-pressed=true]:before{background:var(--ice);border-color:var(--ice);box-shadow:0 0 12px #8ce9faab}.stops button:disabled{opacity:.33}
+.details,.lab-panel,.result,.source{padding:22px}.details h3,.lab-top h3,.source h3{font-size:22px;letter-spacing:-.035em}.details h3{margin:8px 0 18px}.date-fields{display:grid;gap:13px}label{display:block;font-weight:600;font-size:13px;color:#c0d3e1}select,input[type=url],textarea{width:100%;margin-top:6px;background:#0a1726;border:1px solid #355169;border-radius:6px;color:var(--text);padding:9px 11px;min-height:40px}select{cursor:pointer}.key{border-top:1px solid var(--line);margin:18px 0;padding-top:16px;display:grid;gap:8px;color:var(--muted);font-size:13px}.key strong{color:#e0eff9;margin-bottom:2px}.key i{width:10px;height:10px;display:inline-block;border-radius:2px;background:var(--swatch);margin-right:7px}.full{width:100%}
+.lab-grid,.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.lab-top{margin-bottom:12px}.pair{font:500 11px var(--mono);color:#9de9f3;padding:9px 11px;border-left:2px solid #7ae4f7;background:#17384c70;margin:0 0 16px}.lab-actions{margin-top:14px}.lab textarea{resize:vertical;min-height:92px}.result{border-top-color:#498296}.result p{font-size:14px}.result ul{color:#c3d9e9;font-size:14px;line-height:1.6;padding-left:19px;margin:12px 0}.result .notice{margin-top:11px;color:#b7d7e8;font-size:12px}.result .warning{color:#ffd2a7}.result .mono{color:var(--ice);font-size:10px}.result .result-source,.source a{display:inline-block;color:var(--ice);text-decoration:underline;text-underline-offset:3px;margin-top:11px;font-size:13px}.result[data-busy=true]{background-image:linear-gradient(115deg,#0c1928 32%,#183b50 46%,#0c1928 61%);background-size:250% 100%;animation:working 2s linear infinite}.source-section{padding-bottom:67px}.source p{margin-top:6px;font-size:14px}.foot{border-top:1px solid var(--line);padding:18px 0;background:#091624}.foot .shell{display:flex;align-items:center;justify-content:space-between;gap:10px}.foot .shell>a:last-child{color:#b9d7e3;font-size:13px}dialog{background:#102236;color:var(--text);width:min(520px,calc(100% - 30px));padding:23px;border:1px solid #4c7b94;border-radius:13px}dialog::backdrop{background:#050b11b5;backdrop-filter:blur(6px)}dialog p{font-size:13px;margin-top:9px}#settings-error{color:#ffd2a7}
+@keyframes flyover{from{transform:scale(1.04)}to{transform:scale(1.15) translate(-1.5%,1.5%)}}@keyframes sweep{0%{transform:translateY(0);opacity:0}12%,65%{opacity:1}85%,100%{transform:translateY(680%);opacity:0}}@keyframes pulse{from{transform:scale(1);opacity:1}75%,100%{transform:scale(14);opacity:0}}@keyframes blink{50%{opacity:.53}}@keyframes enter{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}@keyframes working{to{background-position:-170% 0}}
+@media(max-width:900px){.shell{width:calc(100% - 52px)}.nav nav{gap:17px}.workspace{grid-template-columns:minmax(0,2.6fr) minmax(200px,1fr)}.hero-visual{left:15%}.hero h1{font-size:clamp(64px,11vw,108px)}.hero-inner{min-height:515px}}
+@media(max-width:650px){.shell{width:calc(100% - 32px)}.nav{height:59px;gap:12px}.nav nav{display:none}.brand{font-size:21px}.mark{width:29px;height:29px;font-size:19px}.nav-action{padding:8px 10px}.hero-inner{min-height:538px;align-items:start}.hero-copy{padding-top:58px}.hero-visual{left:0}.hero-visual:after{background:linear-gradient(90deg,#07121ffa,#07121f74 58%,#07121f38),linear-gradient(0deg,#07121ff5,transparent 45%)}.target{width:65px;height:65px;top:73%;left:18%}.hero h1{font-size:clamp(62px,13.6vw,91px)}.hero p{font-size:15px;max-width:38ch}.hero-caption{bottom:21px}.swath{font-size:9px;min-height:39px}.swath>span:last-child{display:none}.section{padding-top:52px;scroll-margin-top:50px}.section-head{align-items:start;flex-direction:column}.workspace,.lab-grid,.source-grid{grid-template-columns:1fr}.details,.lab-panel,.result,.source{padding:17px}.date-fields{grid-template-columns:1fr 1fr}.key{grid-template-columns:1fr 1fr}.key strong{grid-column:1/-1}.scene-label{top:8px}.scene-label.left{left:8px}.scene-label.right{right:8px}.scene-credit{bottom:6px;right:6px}.source-section{padding-bottom:45px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* Visual system and homepage composition */
+:root{
+  color-scheme:dark;--bg:#101011;--surface:#19191a;--surface2:#232222;--line:#33302e;
+  --text:#faf7f3;--muted:#beb7b1;--ice:#ff9265;--accent:#f77743;
+  --display:"DM Sans",system-ui,sans-serif;--shell:1200px;
+}
+body{background:#101011}
+.shell{width:min(var(--shell),calc(100% - 100px))}
+.top{background:#101011f2;border-color:#34302c;backdrop-filter:blur(14px)}
+.nav{height:68px}
+.nav nav{color:#c7c0b9;font-size:13px;gap:31px}
+.brand{font-size:21px;letter-spacing:-.045em}
+.brand>span:last-child{color:inherit}
+.mark{margin-right:9px;color:#15100d;background:#fa7950;border:0;border-radius:9px;width:30px;height:30px;font-size:20px}
+.nav-action{color:#17100b;min-height:38px;display:inline-flex;align-items:center;background:var(--accent);border-color:var(--accent);padding-inline:14px}
+.nav a.nav-action:hover,.nav-action span{color:#17100b}
+.nav-action:hover{background:#ff9e77}
+.hero{background:#141414}
+.hero-inner{height:clamp(590px,76vh,760px);min-height:0;display:block}
+.hero-visual{inset:0;background:#171514}
+.hero-photo{inset:33% 0 -3%;opacity:.85;background-position:center 58%;filter:grayscale(.84) sepia(.12) brightness(.82) contrast(1.23);animation:flyover 22s ease-in-out infinite alternate;mask-image:linear-gradient(0deg,#0000 0%,#000 24%,#000 70%,#0000 100%)}
+.hero-visual:after{background:linear-gradient(90deg,#111111e8,#11111111 25%,transparent 70%,#100f0fd9),linear-gradient(#111111d1 2%,transparent 51%,#111111c9 100%)}
+.hero-grid{z-index:3;mask-image:linear-gradient(#000 22%,#0005 62%,#0008);background-image:linear-gradient(#aca09a17 1px,transparent 1px),linear-gradient(90deg,#aca09a17 1px,transparent 1px);background-size:78px 78px;background-position:center top}
+.hero-orbit{position:absolute;z-index:3;left:50%;top:71%;width:min(54vw,650px);height:30%;border:1px solid #ff9f7854;border-radius:50%;transform:translate(-50%,-50%) rotate(-10deg)}
+.orbit-a:after{content:"";position:absolute;left:82%;top:11%;border-radius:50%;width:7px;height:7px;background:var(--accent);box-shadow:0 0 20px var(--accent)}
+.orbit-b{width:min(62vw,780px);height:37%;opacity:.4;transform:translate(-50%,-50%) rotate(-10deg)}
+.scan{z-index:3;inset:0;top:33%;height:1px;background:#ffa17b73;border:0;box-shadow:0 0 18px #ff963c70;animation:fieldscan 8s ease-in-out infinite}
+@keyframes fieldscan{0%,12%,100%{opacity:0;transform:translateY(0)}25%{opacity:.75}75%,95%{opacity:0;transform:translateY(345px)}}
+.hero-copy{text-align:center;max-width:none;margin-inline:auto;padding:clamp(40px,7.2vh,84px) 0 0;z-index:4;pointer-events:none}
+.hero-copy .eyebrow,.hero-copy .actions{justify-content:center}
+.hero-copy .actions a{pointer-events:auto}
+.hero-copy .eyebrow{color:#cfc4bb}
+.hero h1{margin:13px 0 15px;font-family:var(--display);font-weight:600;font-size:clamp(53px,7.7vw,115px);letter-spacing:-.085em;line-height:.96}
+.hero-dots{display:inline-flex;gap:.065em;vertical-align:middle;margin-left:.15em}
+.hero-dots i{display:block;width:.085em;height:.085em;background:var(--accent);border-radius:50%;box-shadow:0 0 21px #ef6b3955}
+.hero-dots i:last-child{opacity:.44}
+.hero p{max-width:510px;margin-inline:auto;color:#ddd4cd;font-size:clamp(13px,1.2vw,16px);text-wrap:balance}
+.actions{margin-top:23px}
+.primary,.secondary{border-radius:8px;font-size:13px;min-height:43px}
+.primary{background:var(--accent);border-color:var(--accent);color:#19100c}
+.primary:hover{background:#ffaa84;border-color:#ffaa84;box-shadow:0 0 20px #f7774342}
+.secondary{background:#1d1b1bed;border-color:#53453d;color:var(--text)}
+.secondary:hover{background:#2a2521;border-color:#a17d68}
+.hero-device{z-index:4;position:absolute;bottom:5%;right:4%;width:clamp(172px,19vw,240px);border:1px solid #77706a;border-radius:27px;padding:16px 13px 13px;background:#151515;display:grid;gap:9px;box-shadow:0 25px 47px #000a,inset 0 0 0 4px #232221;transform:rotate(8deg);animation:lift-in .8s .18s ease-out both}
+@keyframes lift-in{from{opacity:0;transform:translateY(22px) rotate(12deg)}to{opacity:1;transform:rotate(8deg)}}
+.device-top,.device-link{display:flex;align-items:center;justify-content:space-between;font:500 10px var(--mono)}
+.device-top{border-bottom:1px solid #393532;padding:2px 2px 9px;color:#dcccbe}
+.device-light{background:#f9824f;width:6px;height:6px;border-radius:50%}
+.device-site{font-weight:700;font-size:clamp(13px,1.25vw,16px);letter-spacing:-.03em;padding-inline:2px}
+.device-site small{display:block;font:500 8px var(--mono);letter-spacing:.07em;color:#c8b7ab;margin-top:4px}
+.device-map{position:relative;border:1px solid #494345;border-radius:10px;overflow:hidden;aspect-ratio:1.43;background:#232120}
+.device-map img{height:100%;width:100%;object-fit:cover;filter:saturate(.68) brightness(.86);transition:opacity .25s}
+.device-map>span:last-child{position:absolute;bottom:5px;left:5px;background:#161310e8;padding:3px 5px;border-radius:3px;font:500 9px var(--mono)}
+.device-ring{position:absolute;top:43%;left:49%;width:24%;aspect-ratio:1;border:1px solid #fd9769;border-radius:50%;box-shadow:0 0 19px #f77743a2}
+.device-tabs{display:flex;gap:5px}
+.device-tabs button{min-height:32px;flex:1;border:1px solid #3d352f;border-radius:5px;background:#23201e;font:500 10px var(--mono);color:#e3d9d0}
+.device-tabs button[aria-pressed=true]{border-color:#b66343;background:#542c1d;color:#ffd2bc}
+.device-link{color:#ffa781;padding:6px 1px 3px;font-size:9px}
+.hero-caption{left:0;right:auto;bottom:30px;z-index:4;background:#171513df;border-color:#726457}
+.hero-caption small{color:#eec5af}.reticle{color:var(--ice)}
+.hero-footer,.foot{background:#171615;border-color:var(--line)}
+.swath{color:#c6b8ad}.swath b{color:#ffb096}.swath i,.data-tag i,.beacon{background:var(--accent);box-shadow:0 0 10px #fa764860}
+.fact-band{display:grid;grid-template-columns:1.4fr 1fr 1fr;align-items:stretch;gap:12px;padding-top:48px}
+.fact-band>div:first-child{display:grid;align-content:center;padding-right:10px}
+.fact-band h2{font-size:clamp(26px,3.55vw,46px);letter-spacing:-.07em;line-height:1.05;margin:8px 0}
+.fact-band em,.section-head em{font-style:normal;color:var(--ice)}
+.fact{display:grid;gap:6px;align-content:center;padding:20px 21px}
+.fact strong{font:600 clamp(31px,3.7vw,50px)/1 var(--display);letter-spacing:-.08em}
+.fact small{font-size:.43em;color:var(--ice);letter-spacing:0}
+.fact span{font:400 11px/1.45 var(--mono);color:var(--muted);max-width:29ch}
+.fact:is(a):hover{border-color:#986148}
+.section-head{margin-bottom:23px}.section-head h2{font-weight:600;letter-spacing:-.072em}
+.section-head p{max-width:58ch}
+.panel{background:#1a1919;border:1px solid var(--line);border-radius:11px}
+.data-tag{background:#2b201b;border-color:#694330;color:#ffb694}
+.modes button[aria-pressed=true],.zoom button:hover,.icon:hover,.modes button:hover{background:#3e2a23;color:#ffc4aa;border-color:#764a37}
+.scene{background:#121113}.earlier{background:#121113}
+.scene-label,.scene-credit{background:#171412ed;border-color:#b5806a80;color:#f8ede5}
+.scene-label small{color:#e8bba5}
+.divider{border-color:#ffae87;box-shadow:0 0 14px #ff8c5d}
+.divider span{color:#20130d;background:#ffad88;box-shadow:0 0 24px #fa764866}
+.play{border-color:#975b42;background:#43271d;color:#ffb393}
+.timeline-head>span,.lab .pair{color:#ffc2a7}
+.stops:before{border-color:#614538}
+.stops button:before{border-color:#896756;background:#24201f}
+.stops button[aria-pressed=true]:before{box-shadow:0 0 13px #ff8c63aa}
+select,input[type=url],textarea{background:#141313;border-color:#544339}
+.key strong,label{color:#eadfd9}
+.lab .pair{background:#33221b;border-color:#e7794c}
+.result{border-top-color:#82503a}
+.result ul,.result .notice{color:#d4c5be}
+.result[data-busy=true]{background-image:linear-gradient(115deg,#191717 32%,#41291d 46%,#191717 61%)}
+.radar-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:15px;align-items:start}
+.radar-feature{margin:0;overflow:hidden}
+.radar-feature img{width:100%;aspect-ratio:2.05;object-fit:cover;background:#252126}
+.radar-feature figcaption{padding:19px 22px;display:grid;gap:12px;justify-items:start}
+.radar-feature h3,.radar-catalog h3{font-size:25px;letter-spacing:-.045em;margin:4px 0}
+.radar-feature p,.radar-catalog p{font-size:13px}
+.radar-catalog{padding:22px}
+.radar-catalog form{display:grid;gap:7px;margin:15px 0 10px}
+.radar-catalog label+select{margin-top:0}
+.radar-catalog form button{justify-self:start;margin-top:3px}
+.catalog-status{margin:10px 0;color:#d9c4b8}
+.catalog-list,.source ul{list-style:none;padding:0;margin:0}
+.catalog-list{display:grid;gap:5px}
+.catalog-list li{display:grid;gap:3px;border-top:1px solid var(--line);padding:10px 0 5px}
+.catalog-list a{color:#ffb393;font:600 13px var(--display);width:max-content;max-width:100%}
+.catalog-list a:hover,.catalog-link a:hover{text-decoration:underline}
+.catalog-list small{font:400 10px var(--mono);color:var(--muted);overflow-wrap:anywhere}
+.catalog-link{display:flex;gap:14px;flex-wrap:wrap;margin-top:13px;color:#ffb393;font-size:12px}
+.source ul{margin-top:10px}
+.source a{margin:0;padding:6px 0;color:#ffb292}
+.foot .shell>a:last-child{color:#dccbc0}
+dialog{background:#211b18;border-color:#86553f}
+@media (max-width:900px){.shell{width:calc(100% - 56px)}.nav nav{gap:14px}.hero-inner{height:600px}.hero-device{right:2%}.hero-photo{inset:36% -10% -5%}}
+@media (max-width:650px){.shell{width:calc(100% - 32px)}.nav{height:57px}.hero-inner{height:622px}.hero-copy{padding-top:45px}.hero h1{font-size:clamp(40px,9.4vw,60px);margin-top:15px}.hero-copy p{max-width:37ch}.hero-photo{inset:39% -25% -3%;background-position:51% center}.hero-device{width:160px;right:2%;bottom:9%;padding:12px 9px 8px;border-radius:20px;gap:7px}.hero-caption{bottom:18px;padding:6px 10px}.hero-caption strong{font-size:13px}.hero-caption small{font-size:8px}.swath{letter-spacing:.03em}.fact-band{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:34px}.fact-band>div:first-child{grid-column:1/-1}.fact{padding:14px}.radar-grid{grid-template-columns:1fr}.radar-feature figcaption,.radar-catalog{padding:16px}.section-head h2{font-size:clamp(34px,8.5vw,52px)}}
+@media(prefers-reduced-motion:reduce){.hero-device{opacity:1}}
+
+</style>
+
+<link rel="stylesheet" href="/nisar-analysis.css">
+<script defer src="/nisar-analysis.js"></script>
+</head>
+<body>
+<a class="skip" href="#observatory">Skip to the observatory</a>
+<header class="top">
+  <div class="shell nav">
+    <a href="#top" class="brand" aria-label="CryoTrace home"><span class="mark" aria-hidden="true">❄</span>Cryo<span>Trace</span></a>
+    <nav aria-label="Main navigation"><a href="#observatory">Observatory</a><a href="#nisar-analysis">NISAR radar</a><a href="#analysis">Analysis</a><a href="#sources">Data sources</a></nav>
+    <a class="nav-action" href="#observatory">Launch explorer <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-photo"></div><div class="hero-grid"></div>
+      <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div><div class="scan"></div>
+    </div>
+    <div class="shell hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="dash"></span> Satellite glacier observatory</div>
+        <h1 id="hero-title">See the ice change<span class="hero-dots" aria-hidden="true"><i></i><i></i></span></h1>
+        <p>Trace an Alaskan glacier through decades of satellite imagery and look for recent radar acquisitions in NASA Earthdata.</p>
+        <div class="actions"><a class="primary" href="#observatory">Compare scenes <span aria-hidden="true">↗</span></a><a class="secondary" href="#nisar-analysis">Explore NISAR <span aria-hidden="true">↘</span></a></div>
+      </div>
+      <div class="hero-device" aria-label="Quick satellite preview">
+        <div class="device-top"><span>CryoTrace</span><span class="device-light" title="Historical satellite archive"></span></div>
+        <div class="device-site">Columbia Glacier<small>ALASKA · LANDSAT</small></div>
+        <div class="device-map"><img id="hero-preview-img" alt="Columbia Glacier preview" fetchpriority="high"><span class="device-ring" aria-hidden="true"></span><span id="hero-preview-year">2024</span></div>
+        <div class="device-tabs" role="group" aria-label="Quick preview year"><button type="button" data-preview="1986" aria-pressed="false">1986</button><button type="button" data-preview="2024" aria-pressed="true">2024</button></div>
+        <a class="device-link" href="#observatory">Open full comparison <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-caption"><span class="reticle" aria-hidden="true">⊕</span><div><strong>Helheim Glacier, Greenland</strong><small>NASA OPERATION ICEBRIDGE · 05 MAY 2017</small></div></div>
+    </div>
+    <div class="hero-footer"><div class="shell swath"><span><i></i> COLUMBIA BAY, ALASKA</span><span>LANDSAT ARCHIVE <b>1986–2024</b></span><span>NASA EARTH OBSERVATORY / USGS</span></div></div>
+  </section>
+
+  <section class="shell fact-band" aria-label="Columbia Glacier context">
+    <div><span class="eyebrow"><span class="dash"></span> The Columbia record</span><h2>Decades of retreat.<br>One place to <em>see it.</em></h2></div>
+    <a class="fact panel" href="https://science.nasa.gov/earth/earth-observatory/alaskas-iconic-columbia-glacier-still-retreats-153291/" target="_blank" rel="noopener"><strong>&gt;20 <small>km</small></strong><span>Retreat since the 1980s, reported by NASA Earth Observatory ↗</span></a>
+    <div class="fact panel"><strong>38 <small>years</small></strong><span>Between the first and last scenes in this viewer</span></div>
+  </section>
+
+
+  <section class="shell section" id="observatory" aria-labelledby="obs-title">
+    <div class="section-head">
+      <div><div class="eyebrow"><span class="dash"></span> SATELLITE EXPLORER</div><h2 id="obs-title">Columbia Glacier</h2><p id="explorer-description">Move the divider to compare the same glacier across two years.</p></div>
+      <div class="data-tag"><i></i><span id="explorer-source">Landsat optical archive</span></div>
+    </div>
+    <div class="workspace">
+      <article id="explorer-optical" class="panel scene-panel" aria-label="Glacier image comparison">
+        <div class="toolbar">
+          <div class="modes" role="group" aria-label="Image display mode">
+            <button data-mode="compare" aria-pressed="true">◫ <span>Compare</span></button><button data-mode="before" aria-pressed="false">Earlier</button><button data-mode="after" aria-pressed="false">Later</button>
+          </div>
+          <div class="zoom" role="group" aria-label="Image magnification"><button id="zoom-out" aria-label="Zoom out" title="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in" title="Zoom in">+</button><button id="zoom-reset" aria-label="Reset image view" title="Reset image view">↺</button></div>
+        </div>
+        <div class="scene" id="scene" data-mode="compare">
+          <div class="layer later"><img id="after-img" alt="Later Landsat view of Columbia Glacier"></div>
+          <div class="layer earlier"><img id="before-img" alt="Earlier Landsat view of Columbia Glacier"></div>
+          <div class="scene-grid" aria-hidden="true"></div>
+          <span class="scene-label left"><small>EARLIER</small><strong id="before-label">1986</strong></span>
+          <span class="scene-label right"><small>LATER</small><strong id="after-label">2024</strong></span>
+          <div class="divider" aria-hidden="true"><span>‹ ›</span></div>
+          <input type="range" id="wipe" min="0" max="100" value="50" aria-label="Earlier image coverage" aria-valuetext="50 percent earlier image">
+          <span class="scene-credit">FALSE-COLOR LANDSAT</span>
+          <div id="image-error" class="image-error" hidden></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline-head"><button id="play" class="play" aria-pressed="false" aria-label="Play timeline" title="Play timeline">▶</button><div><strong>Scene timeline</strong><small>Changes the later scene</small></div><span id="span-years">38 years apart</span></div>
+          <div class="stops" id="stops" role="group" aria-label="Later image year"></div>
+        </div>
+      </article>
+
+      <article id="explorer-landsat" class="panel scene-panel" aria-label="Landsat optical image comparison" hidden>
+        <div class="toolbar"><strong>Landsat false-color comparison</strong></div>
+        <div id="explorer-landsat-scene" class="scene" data-mode="compare">
+          <div class="layer later"><img id="explorer-landsat-after" alt=""></div>
+          <div class="layer earlier"><img id="explorer-landsat-before" alt=""></div>
+          <span class="scene-label left"><small>EARLIER</small><strong id="explorer-landsat-before-date"></strong></span>
+          <span class="scene-label right"><small>LATER</small><strong id="explorer-landsat-after-date"></strong></span>
+          <div class="divider" aria-hidden="true"><span>‹ ›</span></div>
+          <input type="range" id="explorer-landsat-wipe" min="0" max="100" value="50" aria-label="Earlier Landsat image coverage">
+          <span class="scene-credit">SWIR · NIR · GREEN</span>
+        </div>
+        <div class="explorer-radar-note" id="explorer-landsat-credit"></div>
+      </article>
+      <article id="explorer-empty" class="panel explorer-radar-note" hidden>
+        <p id="explorer-message" role="status"></p>
+      </article>
+
+      <aside class="panel details" aria-labelledby="selection-title">
+        <div class="eyebrow"><span class="dash"></span> SCENE PAIR</div><h3 id="selection-title">Set your comparison</h3>
+        <div class="date-fields explorer-controls">
+          <label>Glacier<select id="explorer-site"><option value="columbia">Columbia Glacier</option></select></label>
+          <button type="button" class="secondary" id="explorer-sync" disabled>Sync with NISAR</button>
+          <button type="button" class="secondary" id="explorer-seasonal" hidden>Show seasonal comparison</button>
+          <p id="explorer-status" role="status"></p><p id="guide-pick-status" role="status" hidden>Click a feature in the image to compare that spot in both scenes. Press Escape to cancel.</p>
+        </div>
+        <div id="explorer-optical-controls">
+        <div class="date-fields"><label>Earlier scene<select id="before-select"></select></label><label>Later scene<select id="after-select"></select></label></div>
+        <div class="key"><strong>Reading the image</strong><span><i style="--swatch:#81d8ed"></i> Snow and ice</span><span><i style="--swatch:#234c75"></i> Open water</span><span><i style="--swatch:#aa8666"></i> Exposed bedrock</span><span><i style="--swatch:#5d7c55"></i> Vegetation</span></div>
+        <a class="primary full" href="#landsat-analysis">Inspect this Landsat pair <span aria-hidden="true">↘</span></a>
+        </div>
+        <a class="secondary full" id="explorer-optical-guide" href="#landsat-analysis" hidden>Inspect this Landsat pair ↘</a>
+        <a class="secondary full" id="explorer-map-link" href="#nisar-analysis" hidden>Open NISAR map ↗</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="shell section" id="nisar-analysis" aria-labelledby="nisar-title">
+    <div class="section-head">
+      <div><h2 id="nisar-title">NISAR change analysis</h2><p>Compare dated radar passes and inspect changes in backscatter.</p></div>
+    </div>
+    <div class="panel nisar-controls">
+      <form id="nisar-form" class="nisar-form">
+        <label>Glacier<select id="nisar-site" required></select></label>
+        <label>Year<select id="nisar-year"></select></label>
+        <label>Available comparison<select id="nisar-pair" required disabled></select></label>
+        <button class="primary" id="nisar-run" type="submit" disabled>Run comparison</button>
+        <button class="secondary" id="nisar-find" type="button" hidden>Retry date lookup</button>
+      </form>
+      <p id="nisar-status" role="status">Loading the glacier catalog…</p>
+      <p id="nisar-date-status" role="status"></p>
+    </div>
+    <div id="nisar-result" class="nisar-result" hidden>
+      <div class="panel nisar-map-panel">
+        <div class="nisar-map-head">
+          <h3 id="nisar-comparison"></h3>
+          <label>Before / after <input id="nisar-swipe" type="range" min="0" max="100" value="50"></label>
+        </div>
+        <canvas id="nisar-map" aria-label="Aligned radar comparison with selectable change patches">Select a patch from the ranked list for its evidence.</canvas>
+        <div class="nisar-legend">
+          <span class="nisar-increase">Increase</span><span class="nisar-decrease">Decrease</span>
+          <label id="nisar-reference-control" hidden><input id="nisar-reference" type="checkbox" checked> USGS survey and points</label>
+          <a id="nisar-source" target="_blank" rel="noopener">NISAR data source ↗</a>
+        </div>
+      </div>
+      <div class="panel nisar-patches">
+        <h3>Radar change candidates</h3>
+        <label for="nisar-threshold">Minimum absolute median change <output id="nisar-db"></output></label>
+        <input id="nisar-threshold" type="range" min="0" max="12" step="0.1" value="0">
+        <p id="nisar-count" aria-live="polite"></p>
+        <ul id="nisar-list"></ul>
+        <div id="nisar-evidence" aria-live="polite"><p>Select a patch to see its measurements.</p></div>
+        <button class="secondary" id="nisar-save" type="button" hidden>Save patch</button>
+        <button class="secondary" id="nisar-export" type="button" disabled>Export saved patches</button>
+        <p id="nisar-review" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell section lab" id="analysis" aria-labelledby="analysis-title">
+    <div class="section-head">
+      <div><h2 id="analysis-title">What changed?</h2><p>Radar measurements for the comparison on your map.</p></div>
+      <a class="secondary" href="#nisar-analysis">Back to radar map ↑</a>
+    </div>
+    <div class="lab-grid">
+      <div class="panel lab-panel">
+        <h3 id="overview-glacier">Glacier comparison</h3>
+        <div class="pair" id="overview-pair" hidden></div>
+        <p id="overview-status" role="status">Loading the radar comparison…</p>
+        <ul id="overview-measurements" class="nisar-metrics" hidden></ul>
+      </div>
+      <div class="panel result" aria-labelledby="overview-title">
+        <h3 id="overview-title">Findings</h3>
+        <div id="overview-findings"></div>
+      </div>
+    </div>
+    <details class="landsat-tools" id="landsat-analysis">
+      <summary>Landsat viewing guide</summary>
+      <section class="section lab" id="landsat-tools" aria-labelledby="landsat-analysis-title">
+    <div class="section-head"><div><div class="eyebrow"><span class="dash"></span> ANALYSIS LAB</div><h2 id="landsat-analysis-title">Read the Landsat scenes</h2><p>Compare the current scene pair and inspect the same part of each image.</p></div><button id="settings-open" class="secondary" type="button">⚙ &nbsp; Model settings</button></div>
+    <div class="lab-grid">
+      <div class="panel lab-panel">
+        <div class="lab-top"><h3>Current Landsat pair</h3><span class="data-tag" id="mode-status"><i></i> Demo mode</span></div>
+        <div class="pair" id="pair-summary">Columbia Glacier · 1986 → 2024</div>
+        <div class="date-fields">
+          <label>What are you looking at?
+            <select id="guide-topic">
+              <option value="context">Glacier and scene dates</option>
+              <option value="front">Ice front and open water</option>
+              <option value="land">Exposed ground and vegetation</option>
+              <option value="quality">Cloud, snow and lighting</option>
+            </select>
+          </label>
+        </div>
+        <div class="lab-actions">
+          <button class="primary" id="guide-spot" type="button">Pick a spot on the image</button>
+          <button class="secondary" id="export" type="button">Export scene pair</button>
+        </div>
+        <form id="analysis-form" hidden>
+          <label for="question">Ask your connected model about these scenes</label>
+          <textarea maxlength="1000" id="question" rows="3" placeholder="What differences are visible near the ice front?"></textarea>
+          <div class="lab-actions"><button class="secondary" id="run" type="submit">Ask model</button></div>
+        </form>
+      </div>
+      <div class="panel result" aria-labelledby="result-title">
+        <div class="lab-top"><h3 id="result-title">Viewing guidance</h3><span id="result-kind" class="mono"></span></div>
+        <div id="result-body" aria-live="polite"></div>
+        <div id="guide-crops" hidden>
+          <div class="guide-axes">
+            <label>Horizontal position <input id="guide-x" type="range" min="0" max="100" value="50"></label>
+            <label>Vertical position <input id="guide-y" type="range" min="0" max="100" value="50"></label>
+          </div>
+          <div class="guide-crops">
+            <figure><canvas id="guide-before" width="240" height="180"></canvas><figcaption id="guide-before-date"></figcaption></figure>
+            <figure><canvas id="guide-after" width="240" height="180"></canvas><figcaption id="guide-after-date"></figcaption></figure>
+          </div>
+          <p id="guide-crop-note" role="status"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+    </details>
+  </section>
+
+  <section class="shell section radar-section" id="radar" aria-labelledby="radar-title">
+    <div class="section-head"><div><div class="eyebrow"><span class="dash"></span> Radar observations</div><h2 id="radar-title">A different view of <em>ice.</em></h2><p>Explore a published NISAR image and look up L-band radar acquisitions in NASA’s catalog.</p></div></div>
+    <div class="radar-grid">
+      <figure class="panel radar-feature">
+        <img id="radar-image" src="https://d2pn8kiwq2w21t.cloudfront.net/images/PIA26617_figA.width-1024.jpg" alt="NISAR radar visualization of ridges and crevasses around a mountain in East Antarctica" loading="lazy">
+        <figcaption><div><span class="eyebrow">NASA / JPL-CALTECH · L-BAND SAR</span><h3>The Antarctic “Hummingbird”</h3><p>Green highlights can indicate scattering from irregular surfaces such as crevasses. Magenta can indicate smoother ice.</p></div><a class="secondary" href="https://www.jpl.nasa.gov/images/pia26617-nisars-l-band-radar-reveals-hummingbird-in-antarctica/" target="_blank" rel="noopener">View the radar image ↗</a></figcaption>
+      </figure>
+      <div class="panel radar-catalog">
+        <h3>Find recent NISAR scenes</h3>
+        <p>Search for Level 2 GCOV acquisitions whose footprints intersect a point near the selected glacier.</p>
+        <form id="radar-form"><label for="radar-location">Search area</label><select id="radar-location"><option value="columbia">Columbia Glacier, Alaska</option><option value="jakobshavn">Jakobshavn Isbræ, Greenland</option><option value="pine">Pine Island Glacier, Antarctica</option></select><button class="primary" type="submit" id="radar-search">Search Earthdata <span aria-hidden="true">↗</span></button></form>
+        <p class="catalog-status" id="radar-status" role="status">The catalog returns acquisition dates and source records.</p>
+        <ul class="catalog-list" id="radar-results"></ul>
+        <div class="catalog-link"><a href="https://search.earthdata.nasa.gov/search" target="_blank" rel="noopener">NASA Earthdata ↗</a><a href="https://search.asf.alaska.edu/" target="_blank" rel="noopener">ASF Vertex ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell section source-section" id="sources" aria-labelledby="source-title">
+    <div class="section-head"><div><div class="eyebrow"><span class="dash"></span> DATA SOURCES</div><h2 id="source-title">Explore the archives.</h2></div></div>
+    <div class="source-grid">
+      <article class="panel source"><h3>Discovery and data</h3><p>Find satellite scenes, product documentation, and worked examples.</p><ul>
+        <li><a href="https://science.nasa.gov/earth/earth-observatory/world-of-change/columbia-glacier/" target="_blank" rel="noopener">NASA Landsat scene archive ↗</a></li>
+        <li><a href="https://search.earthdata.nasa.gov/search" target="_blank" rel="noopener">NASA Earthdata Search ↗</a></li>
+        <li><a href="https://search.asf.alaska.edu/" target="_blank" rel="noopener">ASF Data Search Vertex ↗</a></li>
+        <li><a href="https://nisar-docs.asf.alaska.edu/" target="_blank" rel="noopener">NISAR Data User Guide ↗</a></li>
+        <li><a href="https://uavdb.jpl.nasa.gov/education/postcards.html" target="_blank" rel="noopener">NASA UAVSAR Postcards ↗</a></li>
+      </ul></article>
+      <article class="panel source"><h3>Learn remote sensing</h3><p>Read about sensors, radar imagery, and what glacier observations can tell us.</p><ul>
+        <li><a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/remote-sensing" target="_blank" rel="noopener">NASA introduction to remote sensing ↗</a></li>
+        <li><a href="https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/sar" target="_blank" rel="noopener">NASA introduction to SAR ↗</a></li>
+        <li><a href="https://appliedsciences.nasa.gov/get-involved/training" target="_blank" rel="noopener">NASA ARSET training ↗</a></li>
+        <li><a href="https://nisar.jpl.nasa.gov/applications/arcgis-storymaps/" target="_blank" rel="noopener">NISAR StoryMaps ↗</a></li>
+        <li><a href="https://nisar.jpl.nasa.gov/applications/societal-benefit/" target="_blank" rel="noopener">NISAR applications white papers ↗</a></li>
+      </ul></article>
+      <article class="panel source"><h3>Canadian Space Agency</h3><p>Canadian radar missions and a hands-on SAR tutorial.</p><ul>
+        <li><a href="https://donnees-data.asc-csa.gc.ca/en/dataset/rcm" target="_blank" rel="noopener">RADARSAT Constellation Mission ↗</a></li>
+        <li><a href="https://donnees-data.asc-csa.gc.ca/en/dataset/radarsat1" target="_blank" rel="noopener">RADARSAT-1 archive ↗</a></li>
+        <li><a href="https://github.com/asc-csa/Synthetic_Aperture_Radar_Tutorial" target="_blank" rel="noopener">SAR with Python and QGIS ↗</a></li>
+      </ul></article>
+      <article class="panel source"><h3>CONAE · Argentina</h3><p>Explore the SAOCOM catalog and its registration instructions.</p><ul>
+        <li><a href="https://catalogos.conae.gov.ar/catalogo/catalogoSatSaocomInfo.html" target="_blank" rel="noopener">SAOCOM catalogue ↗</a></li>
+        <li><a href="https://www.argentina.gob.ar/noticias/la-informacion-saocom-cada-vez-mas-accesible" target="_blank" rel="noopener">SAOCOM catalogue registration ↗</a></li>
+      </ul></article>
+    </div>
+  </section>
+
+</main>
+<footer class="foot"><div class="shell"><a href="#top" class="brand"><span class="mark" aria-hidden="true">❄</span>Cryo<span>Trace</span></a><a href="data:text/plain;charset=utf-8,CryoTrace%20model%20integration%0A%0AOpen%20CryoTrace.html%20in%20a%20browser%20for%20a%20quick%20preview.%20Serve%20dist%2F%20with%20any%20static%20HTTP%20server%20when%20editing%20the%20source%20or%20connecting%20a%20local%20backend.%0AThere%20is%20no%20frontend%20build%20step.%20Imagery%20loads%20from%20NASA%20Earth%20Observatory.%0A%0A1.%20Expose%20an%20HTTPS%20JSON%20endpoint%20%28for%20example%2C%20POST%20%2Fapi%2Fanalyze%29.%0A2.%20If%20the%20endpoint%20is%20on%20a%20different%20origin%2C%20handle%20OPTIONS%20and%20allow%20the%0A%20%20%20CryoTrace%20origin%2C%20POST%2C%20and%20the%20Content-Type%20header%20in%20the%20CORS%20response.%0A%20%20%20During%20development%2C%20serve%20dist%2F%20over%20localhost%20and%20allow%20that%20origin.%0A%20%20%20The%20standalone%20file%20runs%20on%20a%20file%20origin.%20Use%20a%20local%20HTTP%20server%20for%20API%20testing.%0A3.%20In%20CryoTrace%2C%20open%20Analysis%20%3E%20Model%20settings%2C%20paste%20the%20full%20endpoint%2C%20and%20run.%0A%20%20%20Use%20Export%20scene%20pair%20for%20a%20real%20request%20fixture.%0A%0ARequest%20example%3A%0A%7B%0A%20%20%22schemaVersion%22%3A%20%221.0%22%2C%0A%20%20%22glacier%22%3A%20%7B%0A%20%20%20%20%22id%22%3A%20%22columbia-alaska%22%2C%0A%20%20%20%20%22name%22%3A%20%22Columbia%20Glacier%22%2C%0A%20%20%20%20%22coordinates%22%3A%20%7B%20%22lat%22%3A%2061.14%2C%20%22lon%22%3A%20-147.12%20%7D%0A%20%20%7D%2C%0A%20%20%22before%22%3A%20%7B%20%22year%22%3A%201986%2C%20%22acquiredOn%22%3A%20%221986-07-28%22%2C%20%22sensor%22%3A%20%22Landsat%205%20TM%22%2C%20%22imageUrl%22%3A%20%22https%3A%2F%2F...%22%2C%20%22sourceUrl%22%3A%20%22https%3A%2F%2F...%22%20%7D%2C%0A%20%20%22after%22%3A%20%7B%20%22year%22%3A%202024%2C%20%22acquiredOn%22%3A%20%222024-08-05%22%2C%20%22sensor%22%3A%20%22Landsat%208%20OLI%22%2C%20%22imageUrl%22%3A%20%22https%3A%2F%2F...%22%2C%20%22sourceUrl%22%3A%20%22https%3A%2F%2F...%22%20%7D%2C%0A%20%20%22question%22%3A%20%22Describe%20the%20visible%20change%20in%20the%20glacier%20front%20and%20exposed%20rock.%22%0A%7D%0A%0AResponse%20example%3A%0A%7B%0A%20%20%22summary%22%3A%20%22The%20main%20ice%20front%20appears%20farther%20inland%20in%20the%20later%20scene.%22%2C%0A%20%20%22observations%22%3A%20%5B%22Dark%20water%20occupies%20more%20of%20the%20fjord%20near%20the%20earlier%20ice%20front.%22%5D%2C%0A%20%20%22limitations%22%3A%20%22The%20visual%20comparison%20does%20not%20quantify%20terminus%20displacement.%22%2C%0A%20%20%22sources%22%3A%20%5B%7B%20%22label%22%3A%20%22NASA%20Earth%20Observatory%22%2C%20%22url%22%3A%20%22https%3A%2F%2Fscience.nasa.gov%2Fearth%2Fearth-observatory%2Fworld-of-change%2Fcolumbia-glacier%2F%22%20%7D%5D%0A%7D%0A%0AOnly%20summary%20is%20required.%20Other%20response%20fields%20are%20optional.%0AThe%20request%20is%20cancelled%20if%20the%20scene%20pair%20or%20model%20settings%20change.%0AThe%20browser%20sends%20no%20credentials%20and%20stops%20waiting%20after%2035%20seconds.%0AKeep%20model%20provider%20secrets%20on%20the%20backend.%20For%20live%20glacier%20measurement%2C%0Areturn%20values%20backed%20by%20calibrated%2C%20georeferenced%20data%20and%20a%20documented%20method.%0AThe%20current%20image%20catalog%20is%20in%20app.js.%20Its%20Landsat%20illustrations%20are%20for%0Avisual%20comparison.%20To%20use%20NISAR%2C%20supply%20the%20correct%20scene%20URLs%2C%20product%0Ametadata%2C%20and%20a%20shared%20map%20projection%20or%20matching%20pre-rendered%20views.%0A" download="integration.txt">Model integration guide ↓</a></div></footer>
+<dialog id="settings">
+  <form id="settings-form">
+    <div class="lab-top"><h3>Model settings</h3><button id="settings-close" class="icon" type="button" aria-label="Close model settings">×</button></div>
+    <label for="endpoint">Analysis endpoint</label><input id="endpoint" type="url" placeholder="https://your-server.example/api/analyze">
+    <p>Use your team’s HTTPS endpoint or a local HTTP endpoint for development. Leave this blank to use the viewing guide.</p>
+    <p id="settings-error" role="alert"></p>
+    <div class="lab-actions"><button class="primary" type="submit">Save settings</button><a class="secondary" href="data:text/plain;charset=utf-8,CryoTrace%20model%20integration%0A%0AOpen%20CryoTrace.html%20in%20a%20browser%20for%20a%20quick%20preview.%20Serve%20dist%2F%20with%20any%20static%20HTTP%20server%20when%20editing%20the%20source%20or%20connecting%20a%20local%20backend.%0AThere%20is%20no%20frontend%20build%20step.%20Imagery%20loads%20from%20NASA%20Earth%20Observatory.%0A%0A1.%20Expose%20an%20HTTPS%20JSON%20endpoint%20%28for%20example%2C%20POST%20%2Fapi%2Fanalyze%29.%0A2.%20If%20the%20endpoint%20is%20on%20a%20different%20origin%2C%20handle%20OPTIONS%20and%20allow%20the%0A%20%20%20CryoTrace%20origin%2C%20POST%2C%20and%20the%20Content-Type%20header%20in%20the%20CORS%20response.%0A%20%20%20During%20development%2C%20serve%20dist%2F%20over%20localhost%20and%20allow%20that%20origin.%0A%20%20%20The%20standalone%20file%20runs%20on%20a%20file%20origin.%20Use%20a%20local%20HTTP%20server%20for%20API%20testing.%0A3.%20In%20CryoTrace%2C%20open%20Analysis%20%3E%20Model%20settings%2C%20paste%20the%20full%20endpoint%2C%20and%20run.%0A%20%20%20Use%20Export%20scene%20pair%20for%20a%20real%20request%20fixture.%0A%0ARequest%20example%3A%0A%7B%0A%20%20%22schemaVersion%22%3A%20%221.0%22%2C%0A%20%20%22glacier%22%3A%20%7B%0A%20%20%20%20%22id%22%3A%20%22columbia-alaska%22%2C%0A%20%20%20%20%22name%22%3A%20%22Columbia%20Glacier%22%2C%0A%20%20%20%20%22coordinates%22%3A%20%7B%20%22lat%22%3A%2061.14%2C%20%22lon%22%3A%20-147.12%20%7D%0A%20%20%7D%2C%0A%20%20%22before%22%3A%20%7B%20%22year%22%3A%201986%2C%20%22acquiredOn%22%3A%20%221986-07-28%22%2C%20%22sensor%22%3A%20%22Landsat%205%20TM%22%2C%20%22imageUrl%22%3A%20%22https%3A%2F%2F...%22%2C%20%22sourceUrl%22%3A%20%22https%3A%2F%2F...%22%20%7D%2C%0A%20%20%22after%22%3A%20%7B%20%22year%22%3A%202024%2C%20%22acquiredOn%22%3A%20%222024-08-05%22%2C%20%22sensor%22%3A%20%22Landsat%208%20OLI%22%2C%20%22imageUrl%22%3A%20%22https%3A%2F%2F...%22%2C%20%22sourceUrl%22%3A%20%22https%3A%2F%2F...%22%20%7D%2C%0A%20%20%22question%22%3A%20%22Describe%20the%20visible%20change%20in%20the%20glacier%20front%20and%20exposed%20rock.%22%0A%7D%0A%0AResponse%20example%3A%0A%7B%0A%20%20%22summary%22%3A%20%22The%20main%20ice%20front%20appears%20farther%20inland%20in%20the%20later%20scene.%22%2C%0A%20%20%22observations%22%3A%20%5B%22Dark%20water%20occupies%20more%20of%20the%20fjord%20near%20the%20earlier%20ice%20front.%22%5D%2C%0A%20%20%22limitations%22%3A%20%22The%20visual%20comparison%20does%20not%20quantify%20terminus%20displacement.%22%2C%0A%20%20%22sources%22%3A%20%5B%7B%20%22label%22%3A%20%22NASA%20Earth%20Observatory%22%2C%20%22url%22%3A%20%22https%3A%2F%2Fscience.nasa.gov%2Fearth%2Fearth-observatory%2Fworld-of-change%2Fcolumbia-glacier%2F%22%20%7D%5D%0A%7D%0A%0AOnly%20summary%20is%20required.%20Other%20response%20fields%20are%20optional.%0AThe%20request%20is%20cancelled%20if%20the%20scene%20pair%20or%20model%20settings%20change.%0AThe%20browser%20sends%20no%20credentials%20and%20stops%20waiting%20after%2035%20seconds.%0AKeep%20model%20provider%20secrets%20on%20the%20backend.%20For%20live%20glacier%20measurement%2C%0Areturn%20values%20backed%20by%20calibrated%2C%20georeferenced%20data%20and%20a%20documented%20method.%0AThe%20current%20image%20catalog%20is%20in%20app.js.%20Its%20Landsat%20illustrations%20are%20for%0Avisual%20comparison.%20To%20use%20NISAR%2C%20supply%20the%20correct%20scene%20URLs%2C%20product%0Ametadata%2C%20and%20a%20shared%20map%20projection%20or%20matching%20pre-rendered%20views.%0A" download="integration.txt">Download API guide ↓</a></div>
+  </form>
+</dialog>
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+const sourceUrl = "https://science.nasa.gov/earth/earth-observatory/world-of-change/columbia-glacier/";
+const assetRoot = "https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/woc/images/columbia_glacier/";
+const frames = [
+  [1986, "columbia_tm5_1986209.jpg", "Landsat 5 TM", "1986-07-28"],
+  [2000, "columbia_etm_2000208.jpg", "Landsat 7 ETM+", "2000-07-26"],
+  [2010, "columbia_tm5_2010259.jpg", "Landsat 5 TM", "2010-09-16"],
+  [2018, "columbia_oli_2018153.jpg", "Landsat 8 OLI", "2018-06-02"],
+  [2019, "columbia_oli_20190621.jpg", "Landsat 8 OLI", "2019-06-21"],
+  [2024, "columbia_oli_20240805.jpg", "Landsat 8 OLI", "2024-08-05"]
+].map(([year, file, sensor, acquiredOn]) => ({
+  year, acquiredOn, sensor, imageUrl: assetRoot + file + "?fit=clip&h=480&w=720", sourceUrl
+}));
+
+document.querySelectorAll('a[href="#landsat-analysis"]').forEach(link => {
+  link.addEventListener("click", () => { $("landsat-analysis").open = true; });
+});
+
+const beforeSelect = $("before-select");
+const afterSelect = $("after-select");
+const play = $("play");
+const wipe = $("wipe");
+const scene = $("scene");
+const result = $("result-body");
+const settings = $("settings");
+const field = $("endpoint");
+let explorerOptical = {archive: true};
+let cropImages;
+let cropVersion = 0;
+let pickingSpot = false;
+let before = 0;
+let after = frames.length - 1;
+let magnification = 1;
+let timer;
+let request;
+let endpoint = "";
+let imageFailures = new Set();
+try { endpoint = normalizeEndpoint(localStorage.getItem("cryotrace.endpoint") || ""); } catch {}
+
+const make = (tag, value, className) => {
+  const node = document.createElement(tag);
+  node.textContent = value;
+  if (className) node.className = className;
+  return node;
+};
+
+const stops = frames.map(({year}, index) => {
+  beforeSelect.add(new Option(String(year), index));
+  afterSelect.add(new Option(String(year), index));
+  const stop = make("button", String(year));
+  stop.type = "button";
+  stop.addEventListener("click", () => updateSelection(before, index));
+  $("stops").append(stop);
+  return stop;
+});
+
+function refreshImages() {
+  updateImage($("before-img"), frames[before], "Earlier");
+  updateImage($("after-img"), frames[after], "Later");
+}
+
+function updateImage(image, frame, side) {
+  if (image.dataset.year === String(frame.year)) return;
+  image.dataset.year = String(frame.year);
+  image.alt = side + " Landsat view of Columbia Glacier in " + frame.year;
+  imageFailures.delete(side);
+  showImageStatus();
+  image.classList.add("loading");
+  const loader = new Image();
+  loader.onload = () => {
+    if (image.dataset.year !== String(frame.year)) return;
+    image.src = loader.src;
+    image.classList.remove("loading");
+    image.hidden = false;
+  };
+  loader.onerror = () => {
+    if (image.dataset.year !== String(frame.year)) return;
+    image.classList.remove("loading");
+    image.hidden = true;
+    imageFailures.add(side);
+    showImageStatus();
+  };
+  loader.src = frame.imageUrl;
+}
+
+function showImageStatus() {
+  const banner = $("image-error");
+  banner.hidden = !imageFailures.size;
+  banner.textContent = imageFailures.size ? "A NASA image could not load. Check your internet connection, then choose another scene or reload." : "";
+}
+
+function renderPair() {
+  const a = frames[before].year;
+  const b = frames[after].year;
+  play.disabled = before === frames.length - 2;
+  beforeSelect.value = before;
+  afterSelect.value = after;
+  [...beforeSelect.options].forEach((option, index) => { option.disabled = index >= after; });
+  [...afterSelect.options].forEach((option, index) => { option.disabled = index <= before; });
+  $("before-label").textContent = a;
+  $("after-label").textContent = b;
+  $("span-years").textContent = (b - a) + " years apart";
+  if (explorerOptical.archive) refreshGuide();
+  stops.forEach((stop, index) => {
+    stop.disabled = index <= before;
+    stop.setAttribute("aria-pressed", String(index === after));
+  });
+  refreshImages();
+}
+
+function updateSelection(nextBefore, nextAfter, fromPlayback = false) {
+  if (!fromPlayback) stopPlaying();
+  if (nextBefore >= nextAfter || (before === nextBefore && after === nextAfter)) return;
+  before = nextBefore;
+  after = nextAfter;
+  renderPair();
+}
+
+function stopPlaying() {
+  clearInterval(timer);
+  timer = undefined;
+  play.textContent = "▶";
+  play.setAttribute("aria-pressed", "false");
+  play.setAttribute("aria-label", "Play timeline");
+  play.title = "Play timeline";
+}
+
+beforeSelect.addEventListener("change", () => updateSelection(Number(beforeSelect.value), after));
+afterSelect.addEventListener("change", () => updateSelection(before, Number(afterSelect.value)));
+play.addEventListener("click", () => {
+  if (timer) { stopPlaying(); return; }
+  const step = () => updateSelection(before, after + 1 < frames.length ? after + 1 : before + 1, true);
+  if (before === frames.length - 2) return;
+  setMode("compare");
+  if (after === frames.length - 1) step();
+  play.textContent = "Ⅱ";
+  play.setAttribute("aria-pressed", "true");
+  play.setAttribute("aria-label", "Pause timeline");
+  play.title = "Pause timeline";
+  timer = setInterval(() => {
+    if (after === frames.length - 1) stopPlaying();
+    else step();
+  }, 1350);
+});
+
+function setMode(mode) {
+  scene.dataset.mode = mode;
+  document.querySelectorAll("[data-mode][aria-pressed]").forEach(button => {
+    button.setAttribute("aria-pressed", String(button.dataset.mode === mode));
+  });
+}
+
+document.querySelectorAll(".modes button").forEach(button => {
+  button.addEventListener("click", () => setMode(button.dataset.mode));
+});
+wipe.addEventListener("input", () => {
+  scene.style.setProperty("--split", wipe.value + "%");
+  wipe.setAttribute("aria-valuetext", wipe.value + " percent earlier image");
+});
+
+function zoom(value) {
+  magnification = Math.min(2.5, Math.max(1, value));
+  scene.style.setProperty("--zoom", magnification);
+  $("zoom-out").disabled = magnification <= 1;
+  $("zoom-in").disabled = magnification >= 2.5;
+}
+$("zoom-in").addEventListener("click", () => zoom(magnification + 0.25));
+$("zoom-out").addEventListener("click", () => zoom(magnification - 0.25));
+$("zoom-reset").addEventListener("click", () => {
+  zoom(1);
+  wipe.value = 50;
+  wipe.dispatchEvent(new Event("input"));
+});
+
+function normalizeEndpoint(value) {
+  if (!value) return "";
+  const url = new URL(value);
+  const local = ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname);
+  if ((url.protocol !== "https:" && !(local && url.protocol === "http:")) ||
+      url.username || url.password || url.hash) {
+    throw new Error("Enter an HTTPS URL or a local HTTP URL without credentials or a fragment.");
+  }
+  return url.href;
+}
+
+function updateModeLabel() {
+  const badge = $("mode-status");
+  badge.textContent = endpoint ? " Model connected" : " Scene guide";
+  $("analysis-form").hidden = !endpoint;
+  badge.prepend(document.createElement("i"));
+}
+
+$("settings-open").addEventListener("click", () => {
+  field.value = endpoint;
+  $("settings-error").textContent = "";
+  settings.showModal();
+});
+$("settings-close").addEventListener("click", () => settings.close());
+$("settings-form").addEventListener("submit", event => {
+  event.preventDefault();
+  let value;
+  try {
+    value = normalizeEndpoint(field.value.trim());
+  } catch (error) {
+    $("settings-error").textContent = error instanceof TypeError ? "Enter a full URL, such as https://your-server.example/api/analyze." : error.message;
+    return;
+  }
+  endpoint = value;
+  try { localStorage.setItem("cryotrace.endpoint", endpoint); } catch {}
+  updateModeLabel();
+  showGuide();
+  settings.close();
+});
+
+function opticalContext() {
+  if (!explorerOptical.archive) return explorerOptical.scenes ? explorerOptical : null;
+  return {
+    archive: true,
+    glacier: {id: "columbia-alaska", name: "Columbia Glacier", coordinates: {lat: 61.14, lon: -147.12}},
+    scenes: {before: frames[before], after: frames[after]},
+  };
+}
+
+function acquired(scene) {
+  return scene.acquiredOn || scene.date;
+}
+
+function payload() {
+  const active = opticalContext();
+  if (!active) return null;
+  const scene = item => ({
+    ...item, year: Number(acquired(item).slice(0, 4)), acquiredOn: acquired(item),
+    sensor: item.sensor || item.platform,
+  });
+  return {
+    schemaVersion: "1.0", glacier: active.glacier,
+    before: scene(active.scenes.before), after: scene(active.scenes.after),
+    question: $("question").value.trim() || "Describe the visible glacier changes.",
+  };
+}
+
+$("export").addEventListener("click", () => {
+  const data = payload();
+  if (!data) return;
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = data.glacier.id + "-" + data.before.acquiredOn + "-" + data.after.acquiredOn + ".json";
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+});
+
+function resetResult(message) {
+  request?.abort();
+  request = undefined;
+  setBusy(false);
+  $("result-kind").textContent = "";
+  result.replaceChildren(make("p", message));
+}
+
+function setBusy(value) {
+  $("run").disabled = value || !opticalContext();
+  result.parentElement.dataset.busy = String(value);
+}
+
+function safeLink(item) {
+  if (typeof item?.label !== "string" || typeof item.url !== "string") return null;
+  try {
+    const url = new URL(item.url);
+    if (url.protocol !== "https:") return null;
+    const link = make("a", item.label + " ↗", "result-source");
+    link.href = url.href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    return link;
+  } catch { return null; }
+}
+
+function showFindings(data, label) {
+  $("result-kind").textContent = label;
+  result.replaceChildren(make("p", data.summary));
+  const list = make("ul", "");
+  for (const item of (Array.isArray(data.observations) ? data.observations : []).slice(0, 12)) {
+    if (typeof item === "string") list.append(make("li", item));
+  }
+  if (list.children.length) result.append(list);
+  if (typeof data.limitations === "string") result.append(make("p", data.limitations, "notice"));
+  for (const item of (Array.isArray(data.sources) ? data.sources : []).slice(0, 6)) {
+    const link = safeLink(item);
+    if (link) result.append(link, document.createElement("br"));
+  }
+}
+
+function showGuide() {
+  const active = opticalContext();
+  if (!active) {
+    resetResult("Choose an available Landsat pair in the Scene Explorer to start.");
+    return;
+  }
+  const {before: first, after: last} = active.scenes;
+  const title = active.glacier.name;
+  const days = Math.round((Date.parse(acquired(last)) - Date.parse(acquired(first))) / 86400000);
+  const topic = $("guide-topic").value;
+  const tips = {
+    context: [
+      title + " is the glacier in the current Landsat comparison.",
+      "The scenes were acquired " + days.toLocaleString() + " days apart. Check the acquisition dates when comparing seasonal snow.",
+    ],
+    front: [
+      "Look for the boundary between the ice tongue and the water or land in front of it.",
+      "Pick a spot at that boundary. Use a persistent shoreline, ridge, or headland to orient yourself as you compare the two crops.",
+    ],
+    land: [
+      "Follow the glacier margins and look for bands or patches where the false-color tone changes between dates.",
+      "Check the same area against a nearby mountain slope. Shadow and seasonal snow can change the apparent boundary.",
+    ],
+    quality: [
+      "Look for bright cloud and dark shadow that obscure the same feature differently between dates.",
+      "Choose a clearer area or try a different scene pair when the feature is obscured.",
+    ],
+  };
+  if (active.archive && topic === "context") {
+    tips.context[0] = "Columbia Glacier is a tidewater glacier in Prince William Sound, Alaska. The images are from NASA’s Columbia Glacier Landsat archive.";
+  }
+  if (active.archive && topic === "front") {
+    tips.front.push("In this archive, snow and ice are usually cyan and open water is dark blue. Floating ice can obscure the ice front.");
+  }
+  if (!active.archive && (topic === "context" || topic === "quality")) {
+    tips[topic].push("Catalog cloud cover across the full scenes was " + first.sceneCloudPercent + "% and " +
+      last.sceneCloudPercent + "%. Check the glacier itself for clouds in the crop.");
+  }
+  request?.abort();
+  request = undefined;
+  setBusy(false);
+  showFindings({
+    summary: acquired(first) + " → " + acquired(last),
+    observations: tips[topic],
+    limitations: active.archive ? "Archive crops use the same image position. Use landmarks to check alignment before interpreting a shift."
+      : "Both scenes use the same geographic crop. Use the guide for visual interpretation.",
+    sources: active.archive ? [{label: "NASA Earth Observatory", url: sourceUrl}]
+      : [{label: "Earlier Landsat scene", url: first.sourceUrl}, {label: "Later Landsat scene", url: last.sourceUrl}],
+  }, "CURRENT SCENES");
+}
+
+function stopPicking() {
+  pickingSpot = false;
+  $("guide-pick-status").hidden = true;
+  document.querySelectorAll(".guide-picking").forEach(scene => scene.classList.remove("guide-picking"));
+}
+
+function refreshGuide() {
+  const active = opticalContext();
+  stopPicking();
+  cropVersion++;
+  cropImages = undefined;
+  $("guide-crops").hidden = true;
+  $("guide-spot").disabled = $("export").disabled = $("guide-topic").disabled = !active;
+  $("pair-summary").textContent = active
+    ? active.glacier.name + " · " + acquired(active.scenes.before) + " → " + acquired(active.scenes.after)
+    : "No Landsat pair loaded";
+  showGuide();
+}
+
+function drawGuideCrops() {
+  if (!cropImages) return;
+  const x = Number($("guide-x").value) / 100;
+  const y = Number($("guide-y").value) / 100;
+  for (const [index, side] of ["before", "after"].entries()) {
+    const image = cropImages[index];
+    const canvas = $("guide-" + side);
+    const width = image.naturalWidth * 0.24;
+    const height = width * canvas.height / canvas.width;
+    const left = Math.max(0, Math.min(image.naturalWidth - width, x * image.naturalWidth - width / 2));
+    const top = Math.max(0, Math.min(image.naturalHeight - height, y * image.naturalHeight - height / 2));
+    canvas.getContext("2d").drawImage(image, left, top, width, height, 0, 0, canvas.width, canvas.height);
+  }
+}
+
+async function openGuideCrops() {
+  const active = opticalContext();
+  if (!active) return;
+  const version = ++cropVersion;
+  $("guide-crops").hidden = false;
+  cropImages = undefined;
+  for (const side of ["before", "after"]) {
+    const canvas = $("guide-" + side);
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    $("guide-" + side + "-date").textContent = acquired(active.scenes[side]);
+  }
+  $("guide-crop-note").textContent = "Loading both crops…";
+  try {
+    const images = await Promise.all(Object.values(active.scenes).map(scene => new Promise((resolve, reject) => {
+      const image = new Image();
+      image.onload = () => resolve(image);
+      image.onerror = reject;
+      image.src = scene.imageUrl;
+    })));
+    if (version !== cropVersion) return;
+    cropImages = images;
+    drawGuideCrops();
+    $("guide-crop-note").textContent = "Move either position slider to inspect a different spot in both scenes.";
+  } catch {
+    if (version === cropVersion) $("guide-crop-note").textContent = "One of the Landsat crops could not be loaded.";
+  }
+}
+
+$("guide-topic").addEventListener("change", showGuide);
+$("guide-x").addEventListener("input", drawGuideCrops);
+$("guide-y").addEventListener("input", drawGuideCrops);
+$("guide-spot").addEventListener("click", () => {
+  const active = opticalContext();
+  if (!active) return;
+  openGuideCrops();
+  pickingSpot = true;
+  $("guide-pick-status").hidden = false;
+  $(active.archive ? "scene" : "explorer-landsat-scene").classList.add("guide-picking");
+  $("observatory").scrollIntoView();
+});
+for (const [sceneId, imageId] of [["scene", "after-img"], ["explorer-landsat-scene", "explorer-landsat-after"]]) {
+  $(sceneId).addEventListener("click", event => {
+    if (!pickingSpot) return;
+    const displayed = $(imageId);
+    const earlier = $(sceneId === "scene" ? "before-img" : "explorer-landsat-before");
+    const visible = $(sceneId).dataset.mode === "before" ? earlier : displayed;
+    const bounds = visible.getBoundingClientRect();
+    if (!visible.naturalWidth) return;
+    const scale = getComputedStyle(visible).objectFit === "contain"
+      ? Math.min(bounds.width / visible.naturalWidth, bounds.height / visible.naturalHeight) : null;
+    const width = scale ? visible.naturalWidth * scale : bounds.width;
+    const height = scale ? visible.naturalHeight * scale : bounds.height;
+    const x = (event.clientX - bounds.left - (bounds.width - width) / 2) / width;
+    const y = (event.clientY - bounds.top - (bounds.height - height) / 2) / height;
+    if (x < 0 || x > 1 || y < 0 || y > 1) return;
+    $("guide-x").value = Math.round(x * 100);
+    $("guide-y").value = Math.round(y * 100);
+    stopPicking();
+    drawGuideCrops();
+    $("guide-crops").scrollIntoView({block: "center"});
+  });
+}
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && pickingSpot) stopPicking();
+});
+document.addEventListener("cryotrace-optical", event => {
+  explorerOptical = event.detail;
+  refreshGuide();
+});
+
+$("analysis-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  stopPlaying();
+  const data = payload();
+  if (!endpoint || !data) return;
+  const active = new AbortController();
+  request = active;
+  const timeout = setTimeout(() => active.abort(), 35000);
+  setBusy(true);
+  $("result-kind").textContent = "RUNNING";
+  result.replaceChildren(make("p", "Waiting for the model to analyze the selected scenes…"));
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST", headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      body: JSON.stringify(data), signal: active.signal, credentials: "omit", redirect: "error"
+    });
+    if (!response.ok) throw new Error("The model returned HTTP " + response.status + ".");
+    const findings = await response.json();
+    if (typeof findings?.summary !== "string" || !findings.summary.trim()) throw new Error("The response needs a non-empty summary field.");
+    if (request === active) showFindings(findings, "MODEL RESPONSE");
+  } catch (error) {
+    if (request !== active) return;
+    const message = active.signal.aborted ? "The analysis timed out. Try again." :
+      error instanceof TypeError ? "The endpoint could not be reached. Check its URL, availability, and CORS settings." :
+      error instanceof SyntaxError ? "The endpoint did not return valid JSON." : error.message;
+    $("result-kind").textContent = "REQUEST FAILED";
+    result.replaceChildren(make("p", message, "warning"));
+  } finally {
+    clearTimeout(timeout);
+    if (request === active) {
+      request = undefined;
+      setBusy(false);
+    }
+  }
+});
+
+document.documentElement.style.setProperty("--hero-image", 'url("' + 'https://asapdata.arc.nasa.gov/gallery/icebridge/1742640.helheimcalvingfront.jpg' + '")');
+updateModeLabel();
+renderPair();
+zoom(1);
+
+
+const preview = $("hero-preview-img");
+const previewButtons = [...document.querySelectorAll("[data-preview]")];
+function showQuickPreview(year) {
+  const frame = frames.find(item => item.year === year);
+  if (!frame) return;
+  preview.src = frame.imageUrl;
+  preview.alt = "Landsat preview of Columbia Glacier, " + frame.year;
+  $("hero-preview-year").textContent = frame.year;
+  previewButtons.forEach(button => {
+    button.setAttribute("aria-pressed", String(Number(button.dataset.preview) === year));
+  });
+}
+previewButtons.forEach(button => {
+  button.addEventListener("click", () => showQuickPreview(Number(button.dataset.preview)));
+});
+showQuickPreview(2024);
+
+const radarAreas = {
+  columbia: {label:"Columbia Glacier", point:"-147.12,61.14"},
+  jakobshavn: {label:"Jakobshavn Isbræ", point:"-49.7,69.15"},
+  pine: {label:"Pine Island Glacier", point:"-100.3,-75.2"}
+};
+const catalogRoot = "https://cmr.earthdata.nasa.gov/search/";
+const collections = ["NISAR_L2_GCOV_V1", "NISAR_L2_GCOV_PROVISIONAL_V1"];
+const radarResults = $("radar-results");
+const radarStatus = $("radar-status");
+const radarSearch = $("radar-search");
+
+async function getGranules(collection, point, signal) {
+  const requestUrl = new URL("granules.json", catalogRoot);
+  requestUrl.search = new URLSearchParams({
+    short_name: collection,
+    point,
+    page_size: "8",
+    "sort_key[]": "-start_date"
+  });
+  const response = await fetch(requestUrl, {signal, credentials: "omit"});
+  if (!response.ok) throw new Error("NASA Earthdata returned HTTP " + response.status);
+  const result = await response.json();
+  if (!Array.isArray(result.feed?.entry)) throw new Error("NASA Earthdata returned an unexpected result");
+  return result.feed.entry.filter(item => (
+    /^G\d+-[A-Z0-9_-]+$/.test(item.id ?? "") &&
+    /^\d{4}-\d{2}-\d{2}T/.test(item.time_start ?? "")
+  )).map(item => ({
+    id: item.id,
+    time: item.time_start,
+    label: item.producer_granule_id || item.title || item.id,
+    release: collection.includes("PROVISIONAL") ? "Provisional" : "Validated"
+  }));
+}
+
+$("radar-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  const area = radarAreas[$("radar-location").value];
+  radarSearch.disabled = true;
+  $("radar-location").disabled = true;
+  radarResults.replaceChildren();
+  radarStatus.textContent = "Searching the NASA Earthdata catalog…";
+  const control = new AbortController();
+  const timer = setTimeout(() => control.abort(), 16000);
+  try {
+    const batches = await Promise.allSettled(collections.map(collection =>
+      getGranules(collection, area.point, control.signal)
+    ));
+    const available = batches.filter(batch => batch.status === "fulfilled");
+    if (!available.length) throw new Error("No catalog responses");
+    const unique = new Map();
+    available.flatMap(batch => batch.value).forEach(item => {
+      if (!unique.has(item.label)) unique.set(item.label, item);
+    });
+    const results = [...unique.values()].sort((a, b) => b.time.localeCompare(a.time)).slice(0, 6);
+    if (!results.length) {
+      radarStatus.textContent = available.length === collections.length
+        ? "No matching GCOV records were returned for " + area.label + "."
+        : "The available collection returned no matches. One collection could not be reached.";
+      return;
+    }
+    radarStatus.textContent = "Showing " + results.length + " recent " + (results.length === 1 ? "record" : "records") +
+      " near " + area.label + (available.length === collections.length ? "." : ". One collection could not be reached.");
+    const calendar = new Intl.DateTimeFormat("en-US", {dateStyle: "medium", timeZone: "UTC"});
+    results.forEach(item => {
+      const card = document.createElement("li");
+      const link = make("a", calendar.format(new Date(item.time)) + " · " + item.release + " GCOV ↗");
+      link.href = new URL("concepts/" + item.id + ".json", catalogRoot).href;
+      link.target = "_blank";
+      link.rel = "noopener";
+      card.append(link, make("small", item.label));
+      radarResults.append(card);
+    });
+  } catch {
+    radarStatus.textContent = "NASA Earthdata could not be reached from this browser. Open Earthdata Search or ASF Vertex below.";
+  } finally {
+    clearTimeout(timer);
+    radarSearch.disabled = false;
+    $("radar-location").disabled = false;
+  }
+});
+
+</script>
+</body>
+</html>

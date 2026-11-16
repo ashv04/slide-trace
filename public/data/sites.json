@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "sites": [
+    {
+      "id": "hubbard",
+      "name": "Hubbard Glacier",
+      "region": "Alaska–Yukon",
+      "center": [
+        -139.55,
+        60.02
+      ],
+      "status": "analysis-ready",
+      "bundleUrl": "hubbard/site.json"
+    },
+    {
+      "id": "columbia",
+      "name": "Columbia Glacier",
+      "region": "Alaska",
+      "center": [
+        -147.1,
+        61.15
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "malaspina",
+      "name": "Malaspina Glacier / Sít’ Tlein",
+      "region": "Alaska",
+      "center": [
+        -140.63,
+        59.71
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "mendenhall",
+      "name": "Mendenhall Glacier",
+      "region": "Alaska",
+      "center": [
+        -134.54,
+        58.51
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "taku",
+      "name": "Taku Glacier",
+      "region": "Alaska",
+      "center": [
+        -134.05,
+        58.46
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "kaskawulsh",
+      "name": "Kaskawulsh Glacier",
+      "region": "Yukon",
+      "center": [
+        -138.72,
+        60.77
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "jakobshavn",
+      "name": "Jakobshavn / Sermeq Kujalleq",
+      "region": "Greenland",
+      "center": [
+        -49.78,
+        69.17
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "helheim",
+      "name": "Helheim Glacier",
+      "region": "Greenland",
+      "center": [
+        -38.2,
+        66.37
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "perito-moreno",
+      "name": "Perito Moreno Glacier",
+      "region": "Argentina",
+      "center": [
+        -73.13,
+        -50.5
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "aletsch",
+      "name": "Aletsch Glacier",
+      "region": "Switzerland",
+      "center": [
+        8.05,
+        46.48
+      ],
+      "status": "awaiting-usable-imagery",
+      "bundleUrl": null
+    },
+    {
+      "id": "fixture",
+      "name": "Sample glacier",
+      "region": "Synthetic data",
+      "center": [
+        -139.55,
+        60.02
+      ],
+      "status": "fixture",
+      "bundleUrl": "fixture/site.json"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "publisher": "U.S. Geological Survey",
+  "title": "Preliminary Locations of Landslides and Snow Avalanches Triggered by the 2025 M7.0 Hubbard Glacier Earthquake",
+  "url": "https://doi.org/10.5066/P1GPFLBN",
+  "license": "CC0-1.0",
+  "points": "Hubbard_LSlocations.zip",
+  "boundary": "Hubbard_LSmapping_boundary.zip",
+  "distanceCrs": "EPSG:32607",
+  "searchRadiusM": 500,
+  "interpretationLabels": {
+    "1": "Probable large landslide or snow avalanche",
+    "2": "Probable smaller landslide or snow avalanche",
+    "3": "Increase in surface roughness of undetermined origin"
+  },
+  "note": "The preliminary USGS inventory was interpreted from a separate Sentinel-1 comparison. Proximity is supporting context. Snow, surface moisture, and glacier motion can also change radar backscatter."
+}

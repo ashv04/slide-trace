@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+inputs/*.h5
+inputs/*.h5.*
+
+.slidetrace-jobs/
+
+.earthdata-token
+.earthdata-token-*

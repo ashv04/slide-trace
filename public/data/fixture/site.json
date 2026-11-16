@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "siteId": "fixture",
+  "mode": "geo",
+  "isFixture": true,
+  "before": {
+    "date": "2025-11-26",
+    "imageUrl": "before.png"
+  },
+  "after": {
+    "date": "2025-12-08",
+    "imageUrl": "after.png"
+  },
+  "bounds": [
+    -139.57936233237356,
+    60.008284147627876,
+    -139.52096879932057,
+    60.03189335400544
+  ],
+  "patchesUrl": "patches.geojson",
+  "sources": {
+    "description": "Synthetic data for frontend development"
+  },
+  "processing": {
+    "channel": "HHHH",
+    "thresholdDb": 3.0,
+    "minPixels": 25,
+    "delta": "after minus before",
+    "ranking": "areaM2 times absolute medianDeltaDb"
+  }
+}

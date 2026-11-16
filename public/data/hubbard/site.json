@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "siteId": "hubbard",
+  "mode": "geo",
+  "isFixture": false,
+  "before": {
+    "date": "2025-11-26",
+    "imageUrl": "before.png"
+  },
+  "after": {
+    "date": "2025-12-08",
+    "imageUrl": "after.png"
+  },
+  "bounds": [
+    -140.06300110177153,
+    59.83961904963213,
+    -139.19691607876447,
+    60.260129128605215
+  ],
+  "patchesUrl": "patches.geojson",
+  "patchCount": 143,
+  "sources": {
+    "collection": "NISAR_L2_GCOV_BETA_V1",
+    "collectionDoi": "10.5067/NIL2GCOV-B1",
+    "maturity": "beta",
+    "track": 63,
+    "frame": 32,
+    "direction": "ascending",
+    "lookDirection": "left",
+    "before": {
+      "date": "2025-11-26",
+      "granuleId": "NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001",
+      "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001/NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001.h5",
+      "earthdataUrl": "https://search.earthdata.nasa.gov/search/granules?p=C3622214170-ASF&q=NISAR_L2_PR_GCOV_006_063_A_032_4005_DHDH_A_20251126T133227_20251126T133303_X05009_N_F_J_001",
+      "processingRelease": "X05009",
+      "productVersion": "1.0.2"
+    },
+    "after": {
+      "date": "2025-12-08",
+      "granuleId": "NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001",
+      "downloadUrl": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_BETA_V1/NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001/NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001.h5",
+      "earthdataUrl": "https://search.earthdata.nasa.gov/search/granules?p=C3622214170-ASF&q=NISAR_L2_PR_GCOV_007_063_A_032_4005_DHDH_A_20251208T133228_20251208T133304_X05009_N_F_J_001",
+      "processingRelease": "X05009",
+      "productVersion": "1.0.2"
+    },
+    "reference": {
+      "publisher": "U.S. Geological Survey",
+      "title": "Preliminary Locations of Landslides and Snow Avalanches Triggered by the 2025 M7.0 Hubbard Glacier Earthquake",
+      "url": "https://doi.org/10.5066/P1GPFLBN",
+      "license": "CC0-1.0",
+      "note": "The preliminary USGS inventory was interpreted from a separate Sentinel-1 comparison. Proximity is supporting context. Snow, surface moisture, and glacier motion can also change radar backscatter.",
+      "interpretationLabels": {
+        "1": "Probable large landslide or snow avalanche",
+        "2": "Probable smaller landslide or snow avalanche",
+        "3": "Increase in surface roughness of undetermined origin"
+      }
+    }
+  },
+  "processing": {
+    "frequency": "A",
+    "channel": "HHHH",
+    "thresholdDb": 3.0,
+    "minPixels": 250,
+    "studyBounds": [
+      -140.0,
+      59.87,
+      -139.25,
+      60.23
+    ],
+    "analysisCrs": "EPSG:3413",
+    "pixelSpacingM": [
+      10.0,
+      10.0
+    ],
+    "validOverlapPixels": 20845596,
+    "delta": "after minus before",
+    "areaCrs": "EPSG:6933",
+    "ranking": "areaM2 times absolute medianDeltaDb"
+  },
+  "referenceLayers": {
+    "pointsUrl": "reference-points.geojson",
+    "boundaryUrl": "reference-boundary.geojson",
+    "searchRadiusM": 500,
+    "pointCount": 723,
+    "excludedPointIds": [
+      "349",
+      "382"
+    ]
+  }
+}
